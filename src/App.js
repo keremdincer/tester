@@ -1,26 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import PrivateRoute from './Components/PrivateRoute'
+
+// Page Views
 import Index from './Pages/Index'
 import Test from './Pages/Test'
+import Login from './Pages/Login'
+import Unauthorized from './Pages/Unauthorized'
 
-function App() {
+function App () {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'>Index</Link>
-            </li>
-            <li>
-              <Link to='/test'>Test</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Route path='/' exact component={Index} />
-        <Route path='/test' component={Test} />
+        <PrivateRoute path='/' exact component={Index} />
+        <PrivateRoute path='/test' component={Test} />
+        <Route path='/login/:id' component={Login} />
+        <Route path='/unauthorized' component={Unauthorized} />
       </div>
     </Router>
   )
